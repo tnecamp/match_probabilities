@@ -1,0 +1,303 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+% Instructions for using this template:
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{Title page with logo}
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{wrapfig}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.4\baselineskip}{0.4\baselineskip}
+\titlespacing*{\subsection}{0pt}{0.3\baselineskip}{0.3\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{0.2\baselineskip}{0.2\baselineskip}
+\setlength{\belowcaptionskip}{-10pt}
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE University of Michigan}\\[1.5cm] % Name of your university/college
+\textsc{}\\[0.5cm] % Major heading such as course name
+
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Match Probabilities}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Xiaomeng \textsc{Du} % Your name
+\\
+Timothy \textsc{NeCamp} % Your name
+\\
+Dana \textsc{Turjeman} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Prof. Jian \textsc{Kang} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics{umichlogo.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%   INTRO SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+\subsection{Background}
+
+Utilizing websites and mobile apps, many retail companies collect detailed information on their online users\footnote{http://www.emarketer.com/Article/How-Marketers-Using-Data/1012360}. Despite the vast amount of data that is widely available to these firms regarding users’ online activities, demographics, and purchases, there are certain categories of information (e.g., attitudinal, behavioral, or reaction to hypotheticals) that firms would also like to collect. 
+
+In order to gather such information, firms use surveys to get valuable and clear measures regarding the population of interest. Such surveys allow both marketers and researchers to make statistical inferences for both managerial and academic purposes. That is, there is a pressing and increasing need to leverage the big amounts of information, along with data from surveys that include a variety of measures.
+
+\subsubsection{Collecting Sensitive Information via a Survey}
+A central challenge is that statistical inferences obtained from a survey might be biased if respondents believe their identity might be revealed. In particular, people may be dishonest when requested to provide sensitive information, such as criminal activity, sexual history, or even income. It has been shown (See \cite{RefWorks:7}, for a review) that assuring complete \textit{confidentiality} through promising not to reveal any identifying information would be enough to ensure that reliable measures are obtained. However, with an increasing awareness to data breaches, people might be reluctant to respond or might respond in a selective or deliberately inaccurate manner if they are not assured of complete \textit{anonymity} (i.e., there is no way to identify them given available data and information technology). Therefore, conducting an anonymous survey can be a better option if there is a need in collecting sensitive information.
+
+\subsubsection{Problem in Fusing Anonymous Data}
+The problem arises when the marketer or researcher (hereinafter - user) wants to fuse the vast amount of data she already has (hereinafter - big data base), with data from an anonymous survey.  Because the big data base has identifying information (e.g. social security numbers, addresses), a one to one match between survey respondents and big data individuals would violate anonymity.  Hence, in order to assure that the data fusion process will not reveal the identity of any one survey respondent $S_i$, to any individual $B_j$ from the big data base, the user needs to know the match probabilities. This is where our method comes in hand.
+
+\subsection{Goal}
+Given a non-anonymous database and anonymous survey, our package will return a table of matching probabilities; a match probability is the probability that a respondent from the anonymous survey is identified as an individual from the larger database. In other words, \textbf{our goal is to develop a clear measure of the probability that any one person in the survey can be identified as being any specific person from the database}. 
+
+\subsection{Literature Review}
+ There has been much previous work on data fusion and statistical matching. Most methods, such as \cite{RefWorks:98}, utilize notions of distances to match data sets and avoid model-based approaches. This is because these methods tend to only be concerned with finding the correct match (i.e. minimizing the distance), as opposed to analyzing the matching probabilities. For the problem at hand, calculating the match probabilities, a model-based approach is necessary. Our model assumptions are similar to those of \cite{RefWorks:30}, however, our goals are different, and hence new methodology needed to be developed.
+
+
+\subsection{Novelty}
+The ideas behind the model were inspired by \cite{RefWorks:30}. However, the calculation of probabilities, as presented here, is completely novel. We are unaware of any previous literature or software packages that have obtained matching probabilities as such. We suspect that, due to an increasing awareness to data breaches over the past years, there is a need for assurance of anonymity, as opposed to mere confidentiality.
+Additionally, to the best of our knowledge, there were no pre existing software packages implementing the method in \cite{RefWorks:97}, hence, the calculation of the parameter estimates in the software package we present here is also novel.\
+
+%----------------------------------------------------------------------------------------
+%   METHOD SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Method}
+
+\subsection{Notation}
+Before stating the algorithm it is necessary to define notation. $N_S$ is the number of survey respondents, $N_B$ is the number of big data base individuals, $V_{B_{qx1}}$ are the variables that are available only in the big data base, while $V_{C_{px1}} $ are the variables common in both the survey and big data base (they are further subcategorized into those within the survey, $V_{C_{S}}$, and those within the big data base, $V_{C_{B}}$, as their granulation may differ - for example, age can be presented as \textit{data of birth} in the big data base, and as \textit{age in years}, in the anonymous survey).  $V_S$ would be the variables that only pertain to the survey, however, those are not utilized in our algorithm.
+
+\subsection{Algorithm}
+We make a linear model assumptions, specifically:
+\begin{align*}
+V_B = \theta^TV_C + \epsilon\ \ \ \ \text{where:}\  V_{B_{qx1}}, \theta_{pxq},  V_{C_{px1}}, \text{ with }  \epsilon \sim MVN(0, \Sigma_{qxq})
+\end{align*}
+
+The algorithm to calculate the probability that a survey respondent $i$, denoted $S_i$, will be matched with individual $j$ from the big data base, denoted $B_j$, is as follows:
+
+
+\begin{enumerate}
+\item  \label{item:likelihood} Compute parameter estimates to estimate likelihood ${f}(V_B | V_C, \theta, \Sigma)$ using  $V_B$ and $V_{C_B}$:
+\begin{enumerate}
+\item Calculate $\hat\theta_{OLS}$  by performing OLS on each column of $V_B$.
+
+\item Calculate $B^*$, following \cite{RefWorks:97} and using eigenvalue and eigenvector decomposition of 
+\begin{align*}
+\hat E(V_B V_B^T)^{-1}\hat E(V_B V_{C_B}^T)\hat E(V_{C_B} V_{C_B}^T)\hat E(V_{C_B} V_B^T)
+\end{align*}
+
+\item Calculate $\hat\theta^* = \hat\theta_{OLS} B^*$
+\item Calculate $\hat\Sigma = \hat{cov}(V_B - \hat{V_B})$ where $\hat{V_B} =  \hat\theta^{*T} V_{C_B}$ 
+\end{enumerate} 
+\item \label{item:probability} Compute probability of matching with estimated likelihood:
+\begin{enumerate}
+\item Calculate $P(S_i = B_j) = \frac{f(V_{B,j}|V_{C_{S_i}}\ \hat{\theta}^*\  \hat{\Sigma})}{\sum^N_{k=1}f(V_{B,k}|V_{C_{S_i}}\  \hat{\theta}^*\  \hat{\Sigma})}$ for all $i$ and $j$.
+\item Return matrix $M$ with $M_{i,j} = P(S_i = B_j) $
+\end{enumerate}
+\end{enumerate}
+
+There are several important aspects of this algorithm. Part \ref{item:likelihood} of the algorithm is used to estimate the likelihood of $V_B$ given $V_C$. Note that though we make a linear assumption, our response $V_B$, is a vector making our situation different from typical OLS.  One strategy to overcome this difficulty would be to allow each column of $\hat\theta$ to be what would be found from performing separate linear regressions on each corresponding dimension of $V_B$.  Doing so, however, would ignore relationships between dimensions of $V_B$. Hence, as done in \cite{RefWorks:97}, we calculate an additional coefficient averaging matrix, $B^*$, which accounts for information between dimensions. Using $\hat\theta_{OLS}$ from performing separate linear regressions and $B^*$, we are able to obtain a better (lower standard error) estimate of $ \theta  $.\
+
+In Part \ref{item:probability} of the algorithm, we are able to calculate the probability of matching a survey correspondent to an individual from the big data base by allowing the probability to be proportional to the likelihood. Note that this would be the same probability obtained by assuming the data arises from a mixture of Gaussians (similar to Linear Discriminant Analysis with $N_s$ classes and no aprior preference towards any class). Also, our probabilities behave as expected, the higher the likelihood, the higher the probability of matching.\
+
+\subsection{Time/Space Complexity Analysis}
+Online data-bases can be quite large.  This may create a problem with use of our method both in terms of computational time and storage. Though our package is an R package, we were able to exploit Rcpp to help alleviate potential computation time and storage issues.\
+
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth]{timing_plot.jpg}
+\caption{\label{fig:timing_plot}Timing Comparisons}
+\end{wrapfigure}
+When doing matrix operations, such as centering our data, R creates multiple copies of the matrix each time it is altered. If a matrix is large, this can eat up a large amount of storage.  By doing most matrix operations through Rcpp functions, we are able to use a reference to the matrix and alter it without creating a new copy.  This is especially helpful when the old matrix is no longer needed.\
+
+In addition to helping with storage, coding the most computationally expensive aspects of our algorithm (i.e. performing regression, eigen decomposition to find $B^*$, iterating over multiple for-loops to find every probability for each $S_i$ and $B_j$) saved significant time. By looking at the time comparison between our package (which uses Rcpp) and our same algorithm coded using only R functions in Figure \ref{fig:timing_plot}, we see a significant improvement in speed. We also note that our computational time seems to grow linearly as $N_B$ grows.
+
+
+\section{Examples and Simulation Studies}
+Our package contains four functions. The main function calculates the matching probability table, and the rest of the functions use this table to generate summaries of the table.  Note also that our package necessitates installation of Rcpp and RcppEigen.
+\subsection{Illustration of Software Usage}
+\subsubsection{Main Functionality - Calculating Match Probabilities Matrix}
+The main method has the form: \texttt{match\_probability(Matrix big\_data, Matrix survey\_data, Matrix common\_var\_index)}. 
+The inputs are two datasets with common variables (\texttt{big\_data, survey\_data}) and an $n\times2$ matrix (\texttt{common\_var\_index}) that contains the matching index of common variables of the two datasets.
+
+Figure \ref{fig:visualData} illustrates a possible structure of the data. The dark-blue section of user ids stands for the individuals that are in the big\_data. The dark-green section of user ids stands for the individuals that are in the survey\_data. There is no overlap between the two datasets due to the anonymity of the survey, however, a sample of survey respondents can be a subsample of the big\_data given. The purpose of our function is to calculate the matching probabilities of each of the individuals in survey\_data to each of the individuals in big\_data.
+% Commands to include a figure:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{DataFusion.jpeg}
+\caption{\label{fig:visualData}Illustration of the data}
+\end{figure}
+
+There are two kinds of variables in big\_data: those that are also in the survey\_data (the light green section), and those that are unique (the light blue section). We will use all the unique variables as responses and all the common variables as predictors in our method. This may require the users to clean the dataset ahead to make sure only the wanted variables are included and are formatted correctly (i.e. numeric). For example, in this case, we want to delete the first column(zip) of the big dataset, and change the measurement of the age variable. As for survey\_data, there are two kinds of variables as well: the common variables (the light green section), and the unique variables (the red section). We will only use the common variables in survey\_data.
+The common\_var\_index of this example is as following:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|r}
+big\_data & survey\_data\\\hline
+5 & 1\\
+6 & 2\\
+7 & 3
+\end{tabular}
+%\caption{\label{tab:commonvars}An example of common\_var\_index matrix.}
+\end{table}
+
+The first and second columns are the index of common variables in big\_data, $V_{C_{B}}$, and survey\_data, $V_{C_{S}}$, respectively . Each row of the table links together the big\_data  variable with its corresponding survey\_data variable.  The number of columns is two, while the number of rows is the total number of common variables.
+The output is a matching probability table with the number of columns equal to $N_B$, and number of rows equals to $N_S$. Each row contains the probability of the individual in survey\_data being matched with the individuals in big\_data.
+To demonstrate, the figure below is an example of running the function with a simulated dataset. We have 10,000 rows in big\_data, and 50 rows in survey\_data. There are 10 common variables, and 3 response variables. Thus the common\_var\_index has 10 rows. Part of the matching probability table is shown as follows:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{sampleMatrix.jpg}
+\end{figure}
+\
+
+\
+
+The whole table contains 50 rows and 10000 columns. Each cell contains the matching probability of one individual in survey\_data to one individual in big\_data. For example, cell (1,1) contains $P(S_i = B_j) $=0.0317.
+
+
+\subsubsection{Illustration and Summarizing Functions}
+The other functions contained in the package provide summaries of the probability matrix. 
+
+\begin{enumerate}
+\item{Function \texttt{topmatch(probability\_matrix,survey\_ind,n=5)} }
+
+This function returns the top n matching probability of the x'th individual in survey\_data.
+Inputs: probability\_matrix: matching probability table, survey\_ind: index of row number of the desired individual, $n$: the number of top probabilities, by default equals to 5.
+Example output:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{topmatch.jpg}
+\end{figure}
+\item {Function \texttt{matchgraph(proability\_matrix,survey\_ind,min\_prob=NULL,upper\_quantile=NULL)}}
+This function returns the histogram of matching probabilities of a certain survey individual.
+Inputs: probability\_matrix: matching probability table, survey\_ind: index of row number of the desired individual, min\_prob: all probabilities that are larger than it will be counted. If min\_prob = NULL, all probabilities will be counted, upper\_quantile: value must be between 0 and 1. if assigned, the probabilities above the upper quantile will be counted.  
+Note that min\_prob and upper\_quantile cannot be assigned values at the same time.
+Example output and plot:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textwidth]{matchgraph.jpg}
+\end{figure}
+
+This output is the histogram showing the distribution of the top 1\% of all matching probabilities for survey respondent 1.
+
+\item{Function \texttt{overallmatch(probability\_matrix,min\_prob=NULL,n=10)}}
+
+This function shows the overall matching probabilities and users can use it to decide whether there is a high chance of matching.  
+Inputs: probability\_matrix: matching probability table, min\_prob: all probabilities that are larger than it will be counted. If min\_prob=NULL, all probabilities will be counted, $n$: the number of top probabilities, by default equals to 10.
+Example output:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{overallmatch.jpg}
+\end{figure}
+
+This output shows the top 10 matching probabilities over all survey individuals. It can tell us the best matches of the two datasets. Here the biggest matching probability is 0.423.
+
+\end{enumerate}
+
+\subsection{ Advantages}
+The goal of our package is to provide a way to calculate the matching probability table of two datasets that share common variables. 
+We have successfully achieved this goal and improved time efficiency by using \texttt{c++} functions to accelerate the calculation of eigenvalues, eigenvectors and regression coefficients. We also offer other methods of generating output, including visualization of the matching probability distribution of each individual.  We also create a way of calculating matching probabilities by applying the procedure of \cite{RefWorks:97}.
+
+\section{Summary}
+
+Overall, our package successfully implements a novel approach to data fusion. The package can be used in order to calculate matching probabilities and also provides ways to summarize and visualize the results. Hence, the goal of our package has been achieved.  
+
+\subsection{Limitations and Future Work}
+
+There are some limitations in our current implementation.  For one, our algorithm can only be used if the variables of interest are continuous. We would like to extend our algorithm to work with other data types and distributions. Additionally, our algorithm is based on some model assumptions we hope to relax in the future. For example, allowing the relationship between $V_B$ and $V_C$ to go beyond linear would be beneficial. Lastly, our algorithm does not incorporate any of the variables that are included only in the survey ($V_S$).  We assume independence between $V_B$ and $V_S$ given $V_C$.  This assumption may not be valid and we would like to relax it in future projects.
+
+
+
+%----------------------------------------------------------------------------------------
+%  REFERENCES
+%----------------------------------------------------------------------------------------
+\bibliographystyle{apalike}
+\bibliography{references}%references.bib should be the name of the references file. It should reside in the same folder.
+%----------------------------------------------------------------------------------------
+
+\end{document}
+              
